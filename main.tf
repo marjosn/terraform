@@ -19,6 +19,15 @@ resource "aws_instance" "node1" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "Majotest"
+    Name = "node1"
   }
+
+resource "aws_instance" "node2" {
+  ami           = data.aws_ami.app_ami.id
+  instance_type = var.instance_type 
+
+  tags = {
+    Name = "Node2"
+  }
+
 }
