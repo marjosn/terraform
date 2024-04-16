@@ -1,16 +1,9 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
-provider "aws" {
-  region = var.region
-}
-
-data "aws_ami" "ubuntu" {
+data "aws_ami" "app_ami" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
   }
 
   filter {
@@ -18,10 +11,14 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["979382823631"] # Bitnami
 }
 
-resource "aws_instance" "aws_instance_name" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.app_ami.id
+  instance_type = "t3.nano"
+
+  tags = {
+    Name = "HelloWorld"
+  }
 }
