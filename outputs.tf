@@ -1,7 +1,7 @@
 output "instance_ami" {
-  value = aws_instance.node1.ami
+  value = aws_instance.node.ami
 }
 
 output "instance_arn" {
-  value = aws_instance.node1.arn
+  value = aws_instance.node.arn
 }
