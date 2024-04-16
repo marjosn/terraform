@@ -22,9 +22,4 @@ resource "aws_instance" "web" {
     Name = "Server"
   }
 
-resource "aws.s3.bucket" "lagring"  {
-  bucket = "majoriterotieor87834953"
-  acl = "private"
-  }
-
 }
