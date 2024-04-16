@@ -15,7 +15,6 @@ data "aws_ami" "app_ami" {
 }
 
 resource "aws_instance" "node" {
-  count         = 3
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
